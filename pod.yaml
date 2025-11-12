@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-workload-identity
+  namespace: fleet-system  # Replace with your namespace
+  labels:
+    azure.workload.identity/use: "true"  # Required. Only pods with this label can use workload identity.
+spec:
+  serviceAccountName: workload-identity-kubecon-demo   # Replace with your service account name
+  containers:
+  - name: nginx
+    image: nginx:latest
+    ports:
+    - containerPort: 80
